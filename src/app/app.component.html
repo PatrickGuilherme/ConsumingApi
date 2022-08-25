@@ -1,13 +1,15 @@
-<div *ngFor="let user of list_db">
-    <p>{{ user.id }} - {{ user.name }}</p>
-</div>
-
-<div *ngIf="!list_db || list_db.length <= 0">
-    <p>Nenhum registro encontrado</p>
-</div>
-
+<ng-progress></ng-progress>
 <div *ngIf="globalError">
     {{ globalError }}
 </div>
-
-<ng-progress></ng-progress>
+<div class="main">
+    <div class="box-btn">
+        <h1>Ações possíveis</h1>
+            <h2>Vejá o resultado no console</h2>
+        <button class="btn_action" id="btn_get" (click)="ClickBtnGet()">Get</button>
+        <button class="btn_action" id="btn_getbyid" (click)="ClickBtnGetById()">GetById</button>
+        <button class="btn_action" id="btn_put" (click)="ClickBtnPut()">Put</button>
+        <button class="btn_action" id="btn_post" (click)="ClickBtnPost()">Post</button>
+        <button class="btn_action" id="btn_delete" (click)="ClickBtnDelete()">Delete</button>
+    </div>
+</div>
