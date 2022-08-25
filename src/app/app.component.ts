@@ -4,6 +4,7 @@ import { Company } from 'src/Models/Company';
 import { Geo } from 'src/Models/Geo';
 import { User } from 'src/Models/User';
 import { UserService } from 'src/Services/user.service';
+import { txt_instruction, txt_subtitle, txt_title } from 'src/TextView/text.app.component';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +14,16 @@ import { UserService } from 'src/Services/user.service';
 export class AppComponent {
   public list_db:User[];
   public globalError:string;
+  public instruction:string;
+  public title:string;
+  public subtitle:string;
 
   constructor(private userService:UserService) {
     this.globalError = null;
     this.list_db = [];
+    this.instruction = txt_instruction;
+    this.title = txt_title;
+    this.subtitle = txt_subtitle;
   }
 
 
@@ -39,14 +46,15 @@ export class AppComponent {
 
   //Excluir usuário
   private async DeleteUserDb(): Promise<void>{
+    
     let result = await this.userService.DeleteUser(1);
 
     //Verifica o tipo de retorno
-    if(typeof(result) === "object"){
+    if(result === null){
       console.log("DELETE executado");//Retornou a lista (object)
-      console.log(result)
+      console.log("Exclusão concluída")
     }else{
-      this.globalError = result;//Retornou o erro (string)
+      console.log(result);//Retornou o erro (string)
     }
   }
   //Consultar todos os usuários
@@ -59,7 +67,7 @@ export class AppComponent {
       console.log("GET executado");//Retornou a lista (object)
       console.log(result)
     }else{
-      this.globalError = result;//Retornou o erro (string)
+      console.log(result);//Retornou o erro (string)
     }
   }
   //Consultar usuário por id
@@ -71,7 +79,7 @@ export class AppComponent {
       console.log("GET BY executado");//Retornou a lista (object)
       console.log(result)
     }else{
-      this.globalError = result;//Retornou o erro (string)
+      console.log(result);//Retornou o erro (string)
     }
   }
   //Criar usuário
@@ -87,7 +95,7 @@ export class AppComponent {
       console.log("POST executado");//Retornou a lista (object)
       console.log(result)
     }else{
-      this.globalError = result;//Retornou o erro (string)
+      console.log(result);//Retornou o erro (string)
     }
   }
   //Atualizar usuário
@@ -103,7 +111,7 @@ export class AppComponent {
       console.log("PUT executado");//Retornou a lista (object)
       console.log(result)
     }else{
-      this.globalError = result;//Retornou o erro (string)
+      console.log(result);//Retornou o erro (string)
     }
   }
 }
